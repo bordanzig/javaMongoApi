@@ -52,51 +52,51 @@ public class MongoResource {
 		
 		BasicDBObject query = new BasicDBObject();
 							if(ad_placement.isPresent()){
-								query.append("ad_placement", ad_placement);
+								query.append("ad_placement", ad_placement.toString());
 							}
 							if(format_iab.isPresent()){
-								query.append("format_iab", format_iab);
+								query.append("format_iab", format_iab.toString());
 							}	
 							if(gender.isPresent()){
-								query.append("gender", gender);
+								query.append("gender", gender.toString());
 							}	
 							if(age.isPresent()){	
-								query.append("age", age);
+								query.append("age", age.toString());
 							}	
 							if(scholarity.isPresent()){	
-								query.append("scholarity", scholarity);
+								query.append("scholarity", scholarity.toString());
 							}	
 							if(marital.isPresent()){	
-								query.append("marital", marital);
+								query.append("marital", marital.toString());
 							}	
 							if(income.isPresent()){	
-								query.append("income",income);
+								query.append("income",income.toString());
 							}	
 							if(connection.isPresent()){	
-								query.append("connection",connection);
+								query.append("connection",connection.toString());
 							}	
 							if(browser.isPresent()){	
-								query.append("browser", browser);
+								query.append("browser", browser.toString());
 							}	
 							if(so.isPresent()){	
-								query.append("so",so);
+								query.append("so",so.toString());
 							}
 							if(interest_id.isPresent()){	
-								query.append("interest_id", interest_id);
+								query.append("interest_id", interest_id.toString());
 							}
-		DBCursor cursorRespuesta =  mongoConnection.mongoQuery(mongoCollectionName, query);
+		DBCursor cursorRespuesta =  mongoConnection.mongoQuery(mongoCollectionName, query);	
 		
 		MongoResponseContainer contenedor = new MongoResponseContainer();
 		
+		
 		while(cursorRespuesta.hasNext()){
-			
 			BasicDBObject respuestaSiguiente =(BasicDBObject) cursorRespuesta.next();
 			MongoResponse objetoRespuesta = new MongoResponse(respuestaSiguiente, counter.incrementAndGet());
 			
 			contenedor.agregarResponse(objetoRespuesta);
 		}
-		
 		cursorRespuesta.close();
+		
 		return contenedor;
 							  
 	}
