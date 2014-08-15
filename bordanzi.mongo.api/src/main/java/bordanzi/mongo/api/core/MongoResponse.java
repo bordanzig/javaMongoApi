@@ -19,6 +19,8 @@ public class MongoResponse {
 	private String interest_id;
 	private Integer clicks;
 	private Integer prints;
+	private long id;
+	
 	
 	public MongoResponse(Integer clicks,Integer prints,
 						 String ad_placement,String format_iab,
@@ -43,7 +45,7 @@ public class MongoResponse {
 	}
 
 
-	public MongoResponse(BasicDBObject document) {
+	public MongoResponse(BasicDBObject document, long id) {
 	
 		
 		this.clicks=document.getInt("clicks", 0);
@@ -59,7 +61,17 @@ public class MongoResponse {
 		this.marital=document.getString("marital");
 		this.scholarity=document.getString("scholarity");
 		this.so=document.getString("so");		
-		
+		this.id=id;
+	}
+
+	@JsonProperty
+	public long getId() {
+		return id;
+	}
+
+	@JsonProperty
+	public void setId(long id) {
+		this.id = id;
 	}
 
 

@@ -1,6 +1,8 @@
 package bordanzi.mongo.api.resources;
 
 
+import java.util.concurrent.atomic.AtomicLong;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -24,12 +26,14 @@ import com.mongodb.DBCursor;
 @Produces(MediaType.APPLICATION_JSON)
 public class MongoResource {
 	
-	private MongoConnection mongoConnection;
-	private String mongoCollectionName;
+	private final MongoConnection mongoConnection;
+	private final String mongoCollectionName;
+	private final AtomicLong counter;
 	
 	public MongoResource(MongoConnection conection, String collection){
 		this.mongoConnection = conection;
 		this.mongoCollectionName = collection;
+		this.counter = new AtomicLong();
 		
 	}
 	
@@ -87,7 +91,7 @@ public class MongoResource {
 		while(cursorRespuesta.hasNext()){
 			
 			BasicDBObject respuestaSiguiente =(BasicDBObject) cursorRespuesta.next();
-			MongoResponse objetoRespuesta = new MongoResponse(respuestaSiguiente);
+			MongoResponse objetoRespuesta = new MongoResponse(respuestaSiguiente, counter.incrementAndGet());
 			
 			contenedor.agregarResponse(objetoRespuesta);
 		}
