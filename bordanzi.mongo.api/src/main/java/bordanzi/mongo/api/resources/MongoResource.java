@@ -46,18 +46,40 @@ public class MongoResource {
 								  		   @QueryParam("so") Optional<String> so,
 								  		   @QueryParam("interest_id") Optional<String> interest_id){
 		
-		BasicDBObject query = new BasicDBObject("ad_placement", ad_placement)
-							  .append("format_iab", format_iab)
-							  .append("gender", gender)
-							  .append("age", age)
-							  .append("scholarity", scholarity)
-							  .append("marital", marital)
-							  .append("income",income)
-							  .append("connection",connection)
-							  .append("browser", browser)
-							  .append("so",so)
-							  .append("interest_id", interest_id);
-		
+		BasicDBObject query = new BasicDBObject();
+							if(ad_placement.isPresent()){
+								query.append("ad_placement", ad_placement);
+							}
+							if(format_iab.isPresent()){
+								query.append("format_iab", format_iab);
+							}	
+							if(gender.isPresent()){
+								query.append("gender", gender);
+							}	
+							if(age.isPresent()){	
+								query.append("age", age);
+							}	
+							if(scholarity.isPresent()){	
+								query.append("scholarity", scholarity);
+							}	
+							if(marital.isPresent()){	
+								query.append("marital", marital);
+							}	
+							if(income.isPresent()){	
+								query.append("income",income);
+							}	
+							if(connection.isPresent()){	
+								query.append("connection",connection);
+							}	
+							if(browser.isPresent()){	
+								query.append("browser", browser);
+							}	
+							if(so.isPresent()){	
+								query.append("so",so);
+							}
+							if(interest_id.isPresent()){	
+								query.append("interest_id", interest_id);
+							}
 		DBCursor cursorRespuesta =  mongoConnection.mongoQuery(mongoCollectionName, query);
 		
 		MongoResponseContainer contenedor = new MongoResponseContainer();

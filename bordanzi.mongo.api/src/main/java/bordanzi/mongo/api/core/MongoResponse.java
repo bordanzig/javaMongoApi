@@ -45,8 +45,9 @@ public class MongoResponse {
 
 	public MongoResponse(BasicDBObject document) {
 	
-		this.clicks=document.getInt("clicks");
-		this.prints=document.getInt("prints");
+		
+		this.clicks=document.getInt("clicks", 0);
+		this.prints=document.getInt("prints", 0);
 		this.ad_placement=document.getString("ad_placement");
 		this.age=document.getString("age");
 		this.browser=document.getString("browser");

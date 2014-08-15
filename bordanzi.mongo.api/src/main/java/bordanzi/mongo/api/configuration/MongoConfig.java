@@ -11,19 +11,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class MongoConfig extends Configuration{
 	
 	@NotEmpty
-	String ip;
+	private String ip;
 	
 	@NotNull
-	Integer port;
+	private Integer port;
 	
 	@NotEmpty
-	String dbName;
+	private String dbName;
 	
 	@NotEmpty
-	String collectionName;
+	private String collectionName;
 
 	@NotEmpty
-	String fileName;
+	private String fileName;
 	
 	
 	@JsonProperty
