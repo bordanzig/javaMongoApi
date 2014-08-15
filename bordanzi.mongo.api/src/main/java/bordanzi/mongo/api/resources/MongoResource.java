@@ -22,7 +22,7 @@ import com.mongodb.DBCursor;
 
 
 
-@Path("/mongo/query")
+@Path("/mongo-query")
 @Produces(MediaType.APPLICATION_JSON)
 public class MongoResource {
 	

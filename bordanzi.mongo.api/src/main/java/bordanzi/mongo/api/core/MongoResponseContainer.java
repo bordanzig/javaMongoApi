@@ -1,5 +1,6 @@
 package bordanzi.mongo.api.core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,6 +9,10 @@ public class MongoResponseContainer {
 
 	private List<MongoResponse> responses;
 	
+	
+	public MongoResponseContainer(){
+		this.responses=new ArrayList<MongoResponse>();
+	}
 	
 	@JsonProperty
 	public List<MongoResponse> getResponses() {
