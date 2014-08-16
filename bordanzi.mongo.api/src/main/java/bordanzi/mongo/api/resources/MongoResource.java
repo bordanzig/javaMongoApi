@@ -52,37 +52,37 @@ public class MongoResource {
 		
 		BasicDBObject query = new BasicDBObject();
 							if(ad_placement.isPresent()){
-								query.append("ad_placement", ad_placement.toString());
+								query.append("ad_placement", ad_placement.get());
 							}
 							if(format_iab.isPresent()){
-								query.append("format_iab", format_iab.toString());
+								query.append("format_iab", format_iab.get());
 							}	
 							if(gender.isPresent()){
-								query.append("gender", gender.toString());
+								query.append("gender", gender.get());
 							}	
 							if(age.isPresent()){	
-								query.append("age", age.toString());
+								query.append("age", age.get());
 							}	
 							if(scholarity.isPresent()){	
-								query.append("scholarity", scholarity.toString());
+								query.append("scholarity", scholarity.get());
 							}	
 							if(marital.isPresent()){	
-								query.append("marital", marital.toString());
+								query.append("marital", marital.get());
 							}	
 							if(income.isPresent()){	
-								query.append("income",income.toString());
+								query.append("income",income.get());
 							}	
 							if(connection.isPresent()){	
-								query.append("connection",connection.toString());
+								query.append("connection",connection.get());
 							}	
 							if(browser.isPresent()){	
-								query.append("browser", browser.toString());
+								query.append("browser", browser.get());
 							}	
 							if(so.isPresent()){	
-								query.append("so",so.toString());
+								query.append("so",so.get());
 							}
 							if(interest_id.isPresent()){	
-								query.append("interest_id", interest_id.toString());
+								query.append("interest_id", interest_id.get());
 							}
 		DBCursor cursorRespuesta =  mongoConnection.mongoQuery(mongoCollectionName, query);	
 		
