@@ -101,4 +101,37 @@ public class MongoResource {
 							  
 	}
 	
+	@GET
+	@Path("clicks-for")
+	public MongoResponse sumResponse(@QueryParam("ad_placement") Optional<String> ad_placement,
+	  		   						 @QueryParam("format_iab") Optional<String> format_iab,
+	  		   						 @QueryParam("gender") Optional<String> gender,
+	  		   						 @QueryParam("age") Optional<String> age,
+	  		   						 @QueryParam("scholarity") Optional<String> scholarity,
+	  		   						 @QueryParam("marital") Optional<String> marital,
+	  		   						 @QueryParam("income") Optional<String> income,
+	  		   						 @QueryParam("connection") Optional<String> connection,
+	  		   						 @QueryParam("browser") Optional<String> browser,
+	  		   						 @QueryParam("so") Optional<String> so,
+	  		   						 @QueryParam("interest_id") Optional<String> interest_id){
+		
+		MongoResponseContainer contenedor = response(ad_placement, format_iab,
+													 gender, age, scholarity,
+													 marital, income, connection,
+													 browser, so, interest_id);
+		
+		Integer clicks=0;
+		Integer prints=0;
+		
+		while (contenedor.poseeSiguiente()){
+			MongoResponse respuesta = contenedor.obtenerSiguiente();
+			clicks = clicks + respuesta.getClicks();
+			prints = prints + respuesta.getPrints();
+		}
+		
+		MongoResponse sumResponse = new MongoResponse(clicks, prints, ad_placement.get(), format_iab.get(),
+													  gender.get(), age.get(), scholarity.get(), marital.get(), income.get(),
+													  connection.get(), browser.get(), so.get(), interest_id.get());
+		return sumResponse;
+	}
 }
