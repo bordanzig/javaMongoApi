@@ -10,9 +10,9 @@ public class MongoCSVAdd {
 	MongoConnection mongoConnect;
 	FileManager fileManager;
 	
-	public MongoCSVAdd (MongoConnection mongoConnect, FileManager fileManager){
+	public MongoCSVAdd (MongoConnection mongoConnectionn, FileManager fileManager){
 	
-		this.mongoConnect = mongoConnect;
+		this.mongoConnect = mongoConnectionn;
 		this.fileManager = fileManager;
 		
 	}
